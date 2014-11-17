@@ -17,4 +17,6 @@ ${MALLET_DIR}/bin/mallet train-topics \
     --output-state ${OUTPUT_DIR}/topic-state.gz \
     --output-model ${OUTPUT_DIR}/topic-model.mallet \
     --output-doc-topics ${OUTPUT_DIR}/topic-docs.txt \
-    --output-topic-keys ${OUTPUT_DIR}/topic-keys.txt
+    --output-topic-keys ${OUTPUT_DIR}/topic-keys.txt \
+    --num-top-words 20 \
+    --doc-topics-threshold 0.1
