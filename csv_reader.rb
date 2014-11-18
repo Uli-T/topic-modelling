@@ -10,16 +10,21 @@ params = {
   :headers => true
 }
 
-count = 1
+#count = 1
+threads = []
 
 FILES_TO_PARSE.each do |file|
-  CSV.foreach(file, params) do |row|
-    if $truncate
-      count > 100 ? exit : count += 1
-    end
+  threads << Thread.new do
+    CSV.foreach(file, params) do |row|
+#      if $truncate
+#        count > 100 ? exit : count += 1
+#      end
 
-    File.open("test_input/#{row['_id'].gsub(':', '_')}.txt", 'w') do |f|
-      f.write row['text_content']
+      File.open("test_input/#{row['_id'].gsub(':', '_')}.txt", 'w') do |f|
+        f.write row['text_content']
+      end
     end
   end
 end
+
+threads.each(&:join)
