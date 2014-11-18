@@ -3,6 +3,9 @@ MALLET_DIR=mallet-2.0.7
 INPUT_DIR=test_input
 OUTPUT_DIR=test_output
 
+TOPIC_NUMBER=50
+WORD_NUMBER=20
+THRESHOLD=0.1
 
 ${MALLET_DIR}/bin/mallet import-dir \
     --input ${INPUT_DIR} \
@@ -13,10 +16,10 @@ ${MALLET_DIR}/bin/mallet import-dir \
 
 ${MALLET_DIR}/bin/mallet train-topics \
     --input ${INPUT_DIR}/topic-input.mallet \
-    --num-topics 50 \
+    --num-topics ${TOPIC_NUMBER} \
     --output-state ${OUTPUT_DIR}/topic-state.gz \
     --output-model ${OUTPUT_DIR}/topic-model.mallet \
     --output-doc-topics ${OUTPUT_DIR}/topic-docs.txt \
     --output-topic-keys ${OUTPUT_DIR}/topic-keys.txt \
-    --num-top-words 20 \
-    --doc-topics-threshold 0.1
+    --num-top-words ${WORD_NUMBER} \
+    --doc-topics-threshold ${THRESHOLD}
